@@ -1,13 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "fila_vetor.h"
 #define N 5
 
-int *cria_filavetor()
+void cria_filavetor(/*int *fila, int *u, int *p*/)
 {
     static int fila[N];
-    static int p = 0, u = 0;
-
-    return fila;
+    static int p=0, u=0;
 }
 
 int insere_filavetor(int fila[], int x, int u)
@@ -20,9 +19,11 @@ int insere_filavetor(int fila[], int x, int u)
     return 0;
 }
 
-int remove_filavetor(int fila[], int p)
+int remove_filavetor(int fila[], int p, int u)
 {
+    if(filavetor_vazia(u)) return 0;
     fila[p++] = 0;
+    return 1;
 }
 
 int filavetor_cheia(int u)
@@ -34,9 +35,9 @@ int filavetor_cheia(int u)
     return 0;
 }
 
-int filavetor_vazia(int u, int p)
+int filavetor_vazia(int u)
 {
-    if (u == 0 && p == 0)
+    if (!u)
     {
         return 1;
     }
@@ -48,21 +49,22 @@ int tamanho_filavetor(int u)
     return u;
 }
 
-int print_filavetor(int fila[])
+void print_filavetor(int fila[], int n)
 {
-    for (int i = 0; i < N - 1; i++)
+    for (int i = 0; i < n-1; i++)
     {
         printf(" ------");
     }
-    printf(" -----");
-    for (int i = 0; i < N - 1; i++)
+    printf(" -----\n");
+    for (int i = 0; i < n-1; i++)
     {
         printf("| %3d ", fila[i]);
     }
-    printf("| %3d |", fila[N - 1]);
-    for (int i = 0; i < N - 1; i++)
+    printf("| %3d |", fila[n - 1]);
+    printf("\n");
+    for (int i = 0; i < n - 1; i++)
     {
         printf(" ------");
     }
-    printf(" -----");
+    printf(" -----\n");
 }
