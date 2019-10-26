@@ -8,5 +8,6 @@ int filavetor_cheia();
 int filavetor_vazia();
 int tamanho_filavetor();
 void print_filavetor();
+void reiniciar();
 
 #endif

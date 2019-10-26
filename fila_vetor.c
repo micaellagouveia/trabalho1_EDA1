@@ -3,10 +3,14 @@
 #include "fila_vetor.h"
 #define N 5
 
+int *fila;
+static int u,p;
+
 void cria_filavetor(/*int *fila, int *u, int *p*/)
 {
-    static int fila[N];
-    static int p=0, u=0;
+    fila = malloc(N * sizeof(int));
+    u =0;
+    p =0;
 }
 
 int insere_filavetor(int fila[], int x, int u)
@@ -49,22 +53,28 @@ int tamanho_filavetor(int u)
     return u;
 }
 
-void print_filavetor(int fila[], int n)
+void print_filavetor(int *fila, int n)
 {
+    printf(" ");
     for (int i = 0; i < n-1; i++)
     {
-        printf(" ------");
+        printf("------");
     }
-    printf(" -----\n");
+    printf("-----\n");
     for (int i = 0; i < n-1; i++)
     {
-        printf("| %3d ", fila[i]);
+        printf("| %03d ", fila[i]);
     }
-    printf("| %3d |", fila[n - 1]);
-    printf("\n");
+    printf("| %03d |", fila[n - 1]);
+    printf("\n ");
     for (int i = 0; i < n - 1; i++)
     {
-        printf(" ------");
+        printf("------");
     }
-    printf(" -----\n");
+    printf(" ----\n");
+}
+
+
+void reiniciar(){
+    free(fila);
 }

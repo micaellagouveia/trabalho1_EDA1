@@ -7,7 +7,7 @@
 int main()
 {
     int escolha = -1;
-    int *fila = malloc(sizeof(int) * N);
+    int *fila;
     int n = 0, elem, i = 0, tam=0;
 
     while (escolha)
@@ -17,9 +17,10 @@ int main()
         printf("2. Remover elementos na fila.\n");
         printf("3. Imprimir a fila.\n");
         printf("4. Reiniciar a fila.\n");
-        printf("5. Sair.\n");
+        printf("5. Sair.\n\n");
 
         scanf("%d", &escolha);
+        cria_filavetor();
 
         switch (escolha)
         {
@@ -31,7 +32,7 @@ int main()
 
             printf("Os números inseridos devem estar entre 0 a 999.\n");
 
-          cria_filavetor();
+       
 
             for (i = 0; i < n; i++)
             {
@@ -71,11 +72,16 @@ int main()
             break;
 
         case 3:
+            if(filavetor_vazia(tam)){
+                printf("Fila Vazia.\n\n");
+            }
+            else {
             print_filavetor(fila, tam);
+            }
             break;
 
         case 4:
-            free(fila);
+            reiniciar();
             n = 0;
             i = 0;
             elem = 0;
@@ -85,9 +91,10 @@ int main()
             break;
         
         case 5:
+            printf("------Fim-----\n");
             return 0;
         }
     }
-
+    free(fila);
     return 0;
 }
