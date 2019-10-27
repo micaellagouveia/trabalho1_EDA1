@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fila_vetor.h"
-#define N 5
 
 int *fila;
-static int u, p;
+static int u, p, N;
 
 void cria_fila()
 {
+    N = 5;
     fila = malloc(N * sizeof(int));
     u = 0;
     p = 0;
@@ -19,14 +19,9 @@ void cria_fila()
 
 int insere_fila(int fila[], int x, int u)
 {
-    if (!fila_cheia(u))
+    if (!fila_cheia(u, p))
     {
-        fila[u] = x;
-        u++;
-        if (fila[u] > 999 || fila[u] < 0)
-        {
-            fila[u] = 0;
-        }
+        fila[u++] = x;
         return 1;
     }
     return 0;
@@ -34,12 +29,12 @@ int insere_fila(int fila[], int x, int u)
 
 int remove_fila(int fila[], int p, int u)
 {
-    if (fila_vazia(u))
+    if (fila_vazia(u, p))
         return 0;
     return fila[p++];
 }
 
-int fila_cheia(int u)
+int fila_cheia(int u, int p)
 {
     if (u == N)
     {
@@ -48,7 +43,7 @@ int fila_cheia(int u)
     return 0;
 }
 
-int fila_vazia(int u)
+int fila_vazia(int u, int p)
 {
     if (!u)
     {
@@ -67,26 +62,32 @@ void print_fila(int *fila, int u, int p)
     printf(" -------------------------------\n|");
     for (int j = 0; j < N; j++)
     {
+        if (fila[j] > 999 || fila[j] < 0)
+        {
+            fila[j] = 0;
+        }
         printf(" %03d |", fila[j]);
     }
     printf("\n -------------------------------\n");
     for (int j = 0; j < N; j++)
     {
+        printf(" ");
         if (j == p)
         {
-            printf("   P  ");
+            printf("  p");
             break;
         }
         else
         {
-            printf("      ");
+            printf("     ");
         }
     }
-    for (int j = 0; j < N; j++)
+    printf(" ");
+    for (int j = p; j < N; j++)
     {
         if (j == u)
         {
-            printf("U");
+            printf("  u");
             break;
         }
         else
@@ -97,8 +98,8 @@ void print_fila(int *fila, int u, int p)
     printf("\n");
 }
 
-void reinicia()
+void reinicia(int *p, int *u)
 {
-    p = 0;
-    u = 0;
+    *p = 0;
+    *u = 0;
 }

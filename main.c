@@ -54,7 +54,7 @@ int main()
             printf("Digite quantos elementos você deseja remover:\n");
 
             scanf("%d", &n);
-            if (fila_vazia(u))
+            if (fila_vazia(u, p))
             {
                 printf("Fila vazia. Impossível de remover.\n");
             }
@@ -88,12 +88,9 @@ int main()
             break;
 
         case 4:
-            reinicia();
-            n = 0;
-            p = 0;
-            elem = 0;
-            escolha = -1;
-            u = 0;
+            reinicia(&u, &p);
+            /*p = 0;
+            u = 0;*/
             printf("Fila reiniciada.\n\n");
             break;
 
