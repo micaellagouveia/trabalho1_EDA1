@@ -8,7 +8,7 @@ int main()
 {
     int escolha = -1;
     int *fila;
-    int n = 0, elem, i = 0, tam = 0, check = 0;
+    int n = 0, elem, p = 0, u = 0, check = 0;
 
     while (escolha)
     {
@@ -32,15 +32,15 @@ int main()
 
             printf("Os números inseridos devem estar entre 0 a 999.\n");
 
-            n = n + tam;
+            n = n + u;
 
-            for (i = tam; i < n; i++)
+            for ( int i = u; i < n; i++)
             {
                 if (i < N)
                 {
                     printf("Elemento número %d:\n", i + 1);
                     scanf("%d", &elem);
-                    tam++;
+                    u++;
                 }
                 if (insere_fila(fila, elem, i) == 0)
                 {
@@ -54,18 +54,20 @@ int main()
             printf("Digite quantos elementos você deseja remover:\n");
 
             scanf("%d", &n);
-            if (fila_vazia(i))
+            if (fila_vazia(u))
             {
                 printf("Fila vazia. Impossível de remover.\n");
             }
             for (int j = 0; j < n; j++)
             {
-                printf("Elemento %d - ", j + 1);
-                check = remove_fila(fila, j, tam);
+                check = remove_fila(fila, p, u);
+                p++;
+                printf("Elemento %03d - ", check);
                 if (check)
                 {
+                     printf("P: %d.\n",p);
                     printf("Removido.\n\n");
-                    tam--;
+
                 }
                 else
                 {
@@ -75,23 +77,23 @@ int main()
             break;
 
         case 3:
-            if (fila_vazia(tam))
+            if (fila_vazia(u))
             {
                 printf("Fila Vazia.\n\n");
             }
             else
             {
-                print_fila(fila, tam);
+                print_fila(fila, u, p);
             }
             break;
 
         case 4:
             reinicia();
             n = 0;
-            i = 0;
+            p = 0;
             elem = 0;
             escolha = -1;
-            tam = 0;
+            u = 0;
             printf("Fila reiniciada.\n\n");
             break;
 

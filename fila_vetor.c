@@ -11,13 +11,22 @@ void cria_fila()
     fila = malloc(N * sizeof(int));
     u = 0;
     p = 0;
+    for (int i = 0; i < N; i++)
+    {
+        fila[i] = 0;
+    }
 }
 
 int insere_fila(int fila[], int x, int u)
 {
     if (!fila_cheia(u))
     {
-        fila[u++] = x;
+        fila[u] = x;
+        u++;
+        if (fila[u] > 999 || fila[u] < 0)
+        {
+            fila[u] = 0;
+        }
         return 1;
     }
     return 0;
@@ -27,8 +36,7 @@ int remove_fila(int fila[], int p, int u)
 {
     if (fila_vazia(u))
         return 0;
-    fila[p++] = 0;
-    return 1;
+    return fila[p++];
 }
 
 int fila_cheia(int u)
@@ -54,31 +62,43 @@ int tamanho_fila(int u)
     return u;
 }
 
-void print_fila(int *fila, int n)
+void print_fila(int *fila, int u, int p)
 {
-    printf(" ");
-    for (int i = 0; i < n - 1; i++)
+    printf(" -------------------------------\n|");
+    for (int j = 0; j < N; j++)
     {
-        if (fila[i] != 0)
-            printf("------");
+        printf(" %03d |", fila[j]);
     }
-    printf("-----\n");
-    for (int i = 0; i < n - 1; i++)
+    printf("\n -------------------------------\n");
+    for (int j = 0; j < N; j++)
     {
-        if (fila[i] != 0)
-            printf("| %03d ", fila[i]);
+        if (j == p)
+        {
+            printf("   P  ");
+            break;
+        }
+        else
+        {
+            printf("      ");
+        }
     }
-    printf("| %03d |", fila[n - 1]);
-    printf("\n ");
-    for (int i = 0; i < n - 1; i++)
+    for (int j = 0; j < N; j++)
     {
-        if (fila[i] != 0)
-            printf("------");
+        if (j == u)
+        {
+            printf("U");
+            break;
+        }
+        else
+        {
+            printf("     ");
+        }
     }
-    printf(" ----\n");
+    printf("\n");
 }
 
 void reinicia()
 {
-    free(fila);
+    p = 0;
+    u = 0;
 }
