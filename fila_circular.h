@@ -1,8 +1,8 @@
 #ifndef fila_circular
 #define fila_circular
 
-int *fila;
-static int u, p;
+static int *fila;
+static int u, p, N;
 
 
 void cria_fila();

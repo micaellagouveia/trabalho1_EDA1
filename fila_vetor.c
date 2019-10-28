@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "fila_vetor.h"
 
-int *fila;
-static int u, p, N;
 
 void cria_fila()
 {
@@ -17,9 +15,9 @@ void cria_fila()
     }
 }
 
-int insere_fila(int fila[], int x, int u)
+int insere_fila(int x)
 {
-    if (!fila_cheia(u, p))
+    if (!fila_cheia())
     {
         fila[u++] = x;
         return 1;
@@ -27,14 +25,14 @@ int insere_fila(int fila[], int x, int u)
     return 0;
 }
 
-int remove_fila(int fila[], int p, int u)
+int remove_fila()
 {
-    if (fila_vazia(u, p))
+    if (fila_vazia())
         return 0;
     return fila[p++];
 }
 
-int fila_cheia(int u, int p)
+int fila_cheia()
 {
     if (u == N)
     {
@@ -43,7 +41,7 @@ int fila_cheia(int u, int p)
     return 0;
 }
 
-int fila_vazia(int u, int p)
+int fila_vazia()
 {
     if (!u)
     {
@@ -52,12 +50,12 @@ int fila_vazia(int u, int p)
     return 0;
 }
 
-int tamanho_fila(int u)
+int tamanho_fila()
 {
     return u;
 }
 
-void print_fila(int *fila, int u, int p)
+void print_fila()
 {
     printf(" -------------------------------\n|");
     for (int j = 0; j < N; j++)
@@ -98,8 +96,8 @@ void print_fila(int *fila, int u, int p)
     printf("\n");
 }
 
-void reinicia(int *p, int *u)
+void reinicia()
 {
-    *p = 0;
-    *u = 0;
+    p = 0;
+    u = 0;
 }

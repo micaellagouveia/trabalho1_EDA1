@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include "fila_circular.h"
 
-int N = 5;
 
 void cria_fila()
 {
+    N = 5;
     fila = malloc(N * sizeof(int));
     p = 0;
     u = 0;
 }
 
-int insere_fila(int fila[], int x, int u)
+int insere_fila(int x)
 {
 
     if (fila_cheia(u))
@@ -23,7 +23,7 @@ int insere_fila(int fila[], int x, int u)
     return 1;
 }
 
-int remove_fila(int fila[], int p, int u)
+int remove_fila()
 {
     if (fila_vazia(u))
         return 0;
@@ -35,17 +35,17 @@ int remove_fila(int fila[], int p, int u)
     return 1;
 }
 
-int fila_cheia(int u)
+int fila_cheia()
 {
     return (u + 1) % N == p;
 }
 
-int fila_vazia(int u)
+int fila_vazia()
 {
     return p == u;
 }
 
-int tam_fila(int u)
+int tam_fila()
 {
     int tam = u - p;
     if (p > u)
@@ -55,8 +55,9 @@ int tam_fila(int u)
     return tam;
 }
 
-void print_fila(int *fila, int n)
+void print_fila()
 {
+    /*
     printf(" ");
     for (int i = 0; i < n - 1; i++)
     {
@@ -73,7 +74,7 @@ void print_fila(int *fila, int n)
     {
         printf("------");
     }
-    printf(" ----\n");
+    printf(" ----\n");*/
 }
 
 int redimensiona()

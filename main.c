@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "fila_circular.h"
-#define N 5
+#include "fila_vetor.h"
 
 int main()
 {
     int escolha = -1;
-    int *fila;
-    int n = 0, elem, p = 0, u = 0, check = 0;
+    int n = 0, elem, check = 0;
 
+        cria_fila();
     while (escolha)
     {
         printf("Escolha uma das opções abaixo:\n");
@@ -20,7 +19,6 @@ int main()
         printf("5. Sair.\n\n");
 
         scanf("%d", &escolha);
-        cria_fila();
 
         switch (escolha)
         {
@@ -38,8 +36,7 @@ int main()
             {
                 printf("Elemento número %d:\n", i + 1);
                 scanf("%d", &elem);
-                u++;
-                if (insere_fila(fila, elem, i) == 0)
+                if (insere_fila(elem) == 0)
                 {
                     printf("%d elemento(s) inserido(s) na fila, mas %d não fora(m) posto(s).\n\n", i, n - i);
                     break;
@@ -51,13 +48,13 @@ int main()
             printf("Digite quantos elementos você deseja remover:\n");
 
             scanf("%d", &n);
-            if (fila_vazia(u, p))
+            if (fila_vazia())
             {
                 printf("Fila vazia. Impossível de remover.\n");
             }
             for (int j = 0; j < n; j++)
             {
-                check = remove_fila(fila, p, u);
+                check = remove_fila();
                 p++;
                 printf("Elemento %03d - ", check);
                 if (check)
@@ -73,18 +70,18 @@ int main()
             break;
 
         case 3:
-            if (fila_vazia(u))
+            if (fila_vazia())
             {
                 printf("Fila Vazia.\n\n");
             }
             else
             {
-                print_fila(fila, u);
+                print_fila();
             }
             break;
 
         case 4:
-            reinicia(&u, &p);
+            reinicia();
             /*p = 0;
             u = 0;*/
             printf("Fila reiniciada.\n\n");
