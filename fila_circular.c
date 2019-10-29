@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "fila_circular.h"
 
-
 void cria_fila()
 {
     N = 5;
@@ -23,16 +22,17 @@ int insere_fila(int x)
     return 1;
 }
 
-int remove_fila()
+int remove_fila(int *x)
 {
     if (fila_vazia(u))
         return 0;
+    *x = fila[p++];
     fila[p++] = 0;
     if (p == N)
     {
         p = 0;
     }
-    return 1;
+    return *x;
 }
 
 int fila_cheia()
@@ -57,24 +57,54 @@ int tam_fila()
 
 void print_fila()
 {
-    /*
+    printf(" -----");
+    for (int j = 1; j < N; j++)
+    {
+        printf("------");
+    }
+    printf("\n");
+    for (int j = 0; j < N; j++)
+    {
+        if (fila[j] > 999 || fila[j] < 0)
+        {
+            fila[j] = 0;
+        }
+        printf(" %03d |", fila[j]);
+    }
+    printf("\n");
+    printf(" -----");
+    for (int j = 1; j < N; j++)
+    {
+        printf("------");
+    }
+    printf("\n");
+    for (int j = 0; j < N; j++)
+    {
+        printf(" ");
+        if (j == p)
+        {
+            printf("  p");
+            break;
+        }
+        else
+        {
+            printf("     ");
+        }
+    }
     printf(" ");
-    for (int i = 0; i < n - 1; i++)
+    for (int j = p; j < N; j++)
     {
-        printf("------");
+        if (j == u)
+        {
+            printf("  u");
+            break;
+        }
+        else
+        {
+            printf("     ");
+        }
     }
-    printf("-----\n");
-    for (int i = 0; i < n - 1; i++)
-    {
-        printf("| %03d ", fila[i]);
-    }
-    printf("| %03d |", fila[n - 1]);
-    printf("\n ");
-    for (int i = 0; i < n - 1; i++)
-    {
-        printf("------");
-    }
-    printf(" ----\n");*/
+    printf("\n");
 }
 
 int redimensiona()
@@ -110,5 +140,6 @@ int redimensiona()
 
 void reinicia()
 {
-    free(fila);
+    p = 0;
+    u = 0;
 }

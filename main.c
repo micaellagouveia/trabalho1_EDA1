@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "fila_vetor.h"
+#include "fila_lista.h"
 
 int main()
 {
@@ -54,12 +54,11 @@ int main()
             }
             for (int j = 0; j < n; j++)
             {
-                check = remove_fila();
+                check = remove_fila(&x);
                 p++;
                 printf("Elemento %03d - ", check);
                 if (check)
                 {
-                    printf("P: %d.\n", p);
                     printf("Removido.\n\n");
                 }
                 else
@@ -82,8 +81,6 @@ int main()
 
         case 4:
             reinicia();
-            /*p = 0;
-            u = 0;*/
             printf("Fila reiniciada.\n\n");
             break;
 

@@ -25,11 +25,12 @@ int insere_fila(int x)
     return 0;
 }
 
-int remove_fila()
+int remove_fila(int *x)
 {
     if (fila_vazia())
         return 0;
-    return fila[p++];
+    *x = fila[p++];
+    return *x;
 }
 
 int fila_cheia()

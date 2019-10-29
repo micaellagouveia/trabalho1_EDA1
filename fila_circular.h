@@ -2,7 +2,7 @@
 #define fila_circular
 
 static int *fila;
-static int u, p, N;
+static int u, p, N, x;
 
 
 void cria_fila();
