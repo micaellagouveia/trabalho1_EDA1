@@ -8,7 +8,7 @@ int main()
 {
     int escolha = -1;
     int *fila;
-    int n = 0, elem, i = 0, tam=0;
+    int n = 0, elem, i = 0, tam = 0;
 
     while (escolha)
     {
@@ -20,7 +20,7 @@ int main()
         printf("5. Sair.\n\n");
 
         scanf("%d", &escolha);
-        cria_filavetor();
+        cria_fila();
 
         switch (escolha)
         {
@@ -31,17 +31,18 @@ int main()
             scanf("%d", &n);
 
             printf("Os números inseridos devem estar entre 0 a 999.\n");
+            
+            n = n + tam;
 
-       
-
-            for (i = 0; i < n; i++)
+            for (i = tam; i < n; i++)
             {
-                if(i < N){
-                printf("Elemento número %d:\n", i + 1);
-                scanf("%d", &elem);
-                tam++;
+                if (i < N)
+                {
+                    printf("Elemento número %d:\n", i + 1);
+                    scanf("%d", &elem);
+                    tam++;
                 }
-                if (insere_filavetor(fila, elem, i) == 0)
+                if (insere_fila(fila, elem, i) == 0)
                 {
                     printf("%d elemento(s) inserido(s) na fila, mas %d não fora(m) posto(s).\n\n", i, n - i);
                     break;
@@ -53,14 +54,14 @@ int main()
             printf("Digite quantos elementos você deseja remover:\n");
 
             scanf("%d", &n);
-            if (filavetor_vazia(i))
+            if (fila_vazia(i))
             {
                 printf("Fila vazia. Impossível de remover.\n");
             }
             for (int j = 0; j < n; j++)
             {
                 printf("Elemento %d - ", fila[j]);
-                if (remove_filavetor(fila, j, i))
+                if (remove_fila(fila, j, i))
                 {
                     printf("Removido.\n\n");
                 }
@@ -72,16 +73,18 @@ int main()
             break;
 
         case 3:
-            if(filavetor_vazia(tam)){
+            if (fila_vazia(tam))
+            {
                 printf("Fila Vazia.\n\n");
             }
-            else {
-            print_filavetor(fila, tam);
+            else
+            {
+                print_fila(fila, tam);
             }
             break;
 
         case 4:
-            reiniciar();
+            reinicia();
             n = 0;
             i = 0;
             elem = 0;
@@ -89,7 +92,7 @@ int main()
             tam = 0;
             printf("Fila reiniciada.\n\n");
             break;
-        
+
         case 5:
             printf("------Fim-----\n");
             return 0;

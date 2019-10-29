@@ -3,111 +3,109 @@
 #include "fila_circular.h"
 
 static int *fila;
-static int N, p, u;
+static int u, p;
+int N = 5;
 
-void cria_fila(){
-    N = 5;
-    fila = malloc( N * sizeof(int));
-    p = 0; u = 0;
+void cria_fila()
+{
+    fila = malloc(N * sizeof(int));
+    p = 0;
+    u = 0;
 }
 
-int enfileira(int y){
-    int ret = 1;
-    if(fila_cheia()){
-        ret = redimensiona();
+int insere_fila(int fila[], int x, int u)
+{
+    int check = 1;
+    if (fila_cheia(u))
+    {
+        check = redimensiona();
     }
-    if(ret){
-        fila[u++] = y;
-        if(u == N){
+    if (check)
+    {
+        fila[u++] = x;
+        if (u == N)
+        {
             u = 0;
         }
     }
-    return ret;
+    return check;
 }
 
-void libera(){
-    free(fila);
+int remove_fila(int fila[], int p, int u)
+{
+    if (fila_vazia(u))
+        return 0;
+    fila[p++] = 0;
+    if (p == N)
+    {
+        p = 0;
+    }
+    return 1;
 }
 
-int fila_cheia(){
+int fila_cheia(int u)
+{
     return (u + 1) % N == p;
 }
 
-int fila_vazia(){
+int fila_vazia(int u)
+{
     return p == u;
 }
 
-int tam_fila(){
-    int total = u-p;
-    if(p > u){
-        total = N + total;
+int tam_fila(int u)
+{
+    int tam = u - p;
+    if (p > u)
+    {
+        tam = N + tam;
     }
-    return total;
+    return tam;
 }
 
-int desenfileira(int *y){
-    if(!fila_vazia()){
-        *y = fila[p++];
-        //fila[p] = 0;
-        if(p == N){
-            p = 0;
-        }
-        return 1;
-    return 0;
+void print_fila(int *fila, int n)
+{
+    printf(" ");
+    for (int i = 0; i < n - 1; i++)
+    {
+        printf("------");
     }
+    printf("-----\n");
+    for (int i = 0; i < n - 1; i++)
+    {
+        printf("| %03d ", fila[i]);
+    }
+    printf("| %03d |", fila[n - 1]);
+    printf("\n ");
+    for (int i = 0; i < n - 1; i++)
+    {
+        printf("------");
+    }
+    printf(" ----\n");
 }
 
-void print_fila(){
-    printf("-------------------------------------------------------------\n|");
-    for(int i = 0; i < N; i++){
-        if(fila[i] == 0){
-            printf(" xxx |");
-        }
-        else{
-            printf("  %d  |", fila[i]);
-        }
-    }
-    printf("\n-------------------------------------------------------------\n");
-    if(p == 0 && u == 0){
-        printf("p  u\n");
-    }
-    else{
-        for(int i = 0; i < N; i++){
-            if(fila[i] != 0){
-                printf(" p ");
-                break;
-            }
-            else{
-                printf("    ");
-            }
-        }
-        for(int i = 0; i < N; i++){
-            if(fila[i] != 0 && fila[i+1] == 0){
-                printf("  u  \n");
-                break;
-            }
-                else{
-                printf("     ");
-            }
-        }
-    }
-}
-
-int redimensiona(){
+int redimensiona()
+{
     int i, j;
     fila = realloc(fila, 2 * N * sizeof(int));
-    if(fila == NULL){
+    if (fila == NULL)
+    {
         return 0;
     }
-    if(u != N - 1){
-        if(u-1 < N - p){
-            for(i = N, j = 0; j < u; i++, j++){
+    if (u != N - 1)
+    {
+        if (u - 1 < N - p)
+        {
+            for (i = N, j = 0; j < u; i++, j++)
+            {
                 fila[i] = fila[j];
             }
             u = N + u;
         }
-        else{
-            for(i = p, j = N + p; i < N; i++, j++){
+        else
+        {
+            for (i = p, j = N + p; i < N; i++, j++)
+            {
                 fila[j] = fila[i];
             }
             p = N + p;
@@ -115,4 +113,9 @@ int redimensiona(){
     }
     N *= 2;
     return 1;
+}
+
+void reinicia()
+{
+    free(fila);
 }

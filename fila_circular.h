@@ -1,13 +1,15 @@
-#ifndef fila_circular.h
-#define fila_circular.h
+#ifndef fila_circular
+#define fila_circular
 
-int cria_filacircular();
-int insere_filacircular();
-int remove_filacircular();
-int filacircular_cheia();
-int filacircular_vazia();
-int tamanho_filacircular();
-int print_filacircular();
+void cria_fila();
+int insere_fila();
+int remove_fila();
+int fila_cheia();
+int fila_vazia();
+int tamanho_fila();
+void print_fila();
+int redimensiona();
+void reinicia();
 
 
 #endif

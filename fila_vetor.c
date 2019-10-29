@@ -4,18 +4,18 @@
 #define N 5
 
 int *fila;
-static int u,p;
+static int u, p;
 
-void cria_filavetor(/*int *fila, int *u, int *p*/)
+void cria_fila()
 {
     fila = malloc(N * sizeof(int));
-    u =0;
-    p =0;
+    u = 0;
+    p = 0;
 }
 
-int insere_filavetor(int fila[], int x, int u)
+int insere_fila(int fila[], int x, int u)
 {
-    if (!filavetor_cheia(u))
+    if (!fila_cheia(u))
     {
         fila[u++] = x;
         return 1;
@@ -23,14 +23,15 @@ int insere_filavetor(int fila[], int x, int u)
     return 0;
 }
 
-int remove_filavetor(int fila[], int p, int u)
+int remove_fila(int fila[], int p, int u)
 {
-    if(filavetor_vazia(u)) return 0;
+    if (fila_vazia(u))
+        return 0;
     fila[p++] = 0;
     return 1;
 }
 
-int filavetor_cheia(int u)
+int fila_cheia(int u)
 {
     if (u == N)
     {
@@ -39,7 +40,7 @@ int filavetor_cheia(int u)
     return 0;
 }
 
-int filavetor_vazia(int u)
+int fila_vazia(int u)
 {
     if (!u)
     {
@@ -48,33 +49,36 @@ int filavetor_vazia(int u)
     return 0;
 }
 
-int tamanho_filavetor(int u)
+int tamanho_fila(int u)
 {
     return u;
 }
 
-void print_filavetor(int *fila, int n)
+void print_fila(int *fila, int n)
 {
     printf(" ");
-    for (int i = 0; i < n-1; i++)
+    for (int i = 0; i < n - 1; i++)
     {
-        printf("------");
+        if (fila[i] != 0)
+            printf("------");
     }
     printf("-----\n");
-    for (int i = 0; i < n-1; i++)
+    for (int i = 0; i < n - 1; i++)
     {
-        printf("| %03d ", fila[i]);
+        if (fila[i] != 0)
+            printf("| %03d ", fila[i]);
     }
     printf("| %03d |", fila[n - 1]);
     printf("\n ");
     for (int i = 0; i < n - 1; i++)
     {
-        printf("------");
+        if (fila[i] != 0)
+            printf("------");
     }
     printf(" ----\n");
 }
 
-
-void reiniciar(){
+void reinicia()
+{
     free(fila);
 }
