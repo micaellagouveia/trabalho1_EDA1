@@ -8,7 +8,7 @@ int main()
 {
     int escolha = -1;
     int *fila;
-    int n = 0, elem, i = 0, tam = 0;
+    int n = 0, elem, i = 0, tam = 0, check = 0;
 
     while (escolha)
     {
@@ -31,7 +31,7 @@ int main()
             scanf("%d", &n);
 
             printf("Os números inseridos devem estar entre 0 a 999.\n");
-            
+
             n = n + tam;
 
             for (i = tam; i < n; i++)
@@ -60,10 +60,12 @@ int main()
             }
             for (int j = 0; j < n; j++)
             {
-                printf("Elemento %d - ", fila[j]);
-                if (remove_fila(fila, j, i))
+                printf("Elemento %d - ", j + 1);
+                check = remove_fila(fila, j, tam);
+                if (check)
                 {
                     printf("Removido.\n\n");
+                    tam--;
                 }
                 else
                 {
