@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "fila_circular.h"
 
-static int *fila;
-static int u, p;
 int N = 5;
 
 void cria_fila()
@@ -15,20 +13,14 @@ void cria_fila()
 
 int insere_fila(int fila[], int x, int u)
 {
-    int check = 1;
+
     if (fila_cheia(u))
     {
-        check = redimensiona();
+        redimensiona();
     }
-    if (check)
-    {
-        fila[u++] = x;
-        if (u == N)
-        {
-            u = 0;
-        }
-    }
-    return check;
+    fila[u++] = x;
+
+    return 1;
 }
 
 int remove_fila(int fila[], int p, int u)
@@ -92,9 +84,9 @@ int redimensiona()
     {
         return 0;
     }
-    if (u != N - 1)
+    if (u < p)
     {
-        if (u - 1 < N - p)
+        if (u < N - p)
         {
             for (i = N, j = 0; j < u; i++, j++)
             {

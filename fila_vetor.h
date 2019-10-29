@@ -1,6 +1,8 @@
 #ifndef fila_vetor
 #define fila_vetor
 
+
+
 void cria_fila();
 int insere_fila();
 int remove_fila();

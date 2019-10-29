@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "fila_vetor.h"
+#include "fila_circular.h"
 #define N 5
 
 int main()
@@ -34,14 +34,11 @@ int main()
 
             n = n + u;
 
-            for ( int i = u; i < n; i++)
+            for (int i = u; i < n; i++)
             {
-                if (i < N)
-                {
-                    printf("Elemento número %d:\n", i + 1);
-                    scanf("%d", &elem);
-                    u++;
-                }
+                printf("Elemento número %d:\n", i + 1);
+                scanf("%d", &elem);
+                u++;
                 if (insere_fila(fila, elem, i) == 0)
                 {
                     printf("%d elemento(s) inserido(s) na fila, mas %d não fora(m) posto(s).\n\n", i, n - i);
@@ -65,9 +62,8 @@ int main()
                 printf("Elemento %03d - ", check);
                 if (check)
                 {
-                     printf("P: %d.\n",p);
+                    printf("P: %d.\n", p);
                     printf("Removido.\n\n");
-
                 }
                 else
                 {
@@ -83,7 +79,7 @@ int main()
             }
             else
             {
-                print_fila(fila, u, p);
+                print_fila(fila, u);
             }
             break;
 
